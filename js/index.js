@@ -29,7 +29,7 @@ function makeGalleryMarkup(images) {
 }
 
 galleryList.addEventListener('click', onCardClick);
-modalOverlay.addEventListener('click', onOverlay);
+modalOverlay.addEventListener('click', closeModal);
 closeModalBtn.addEventListener('click', closeModal);
 
 function onCardClick(e) {
@@ -54,14 +54,11 @@ function openModal(e) {
 function closeModal() {
   modalEl.classList.remove('is-open');
   modalImg.src = '';
-}
-
-function onOverlay(e) {
+  modalImg.alt = '';
+  window.removeEventListener('keydown', onListenerButton);
   if (e.target !== modalOverlay) {
     return;
   }
-
-  closeModal();
 }
 
 function onListenerButton(e) {
